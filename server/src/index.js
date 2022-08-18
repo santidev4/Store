@@ -7,6 +7,9 @@ const routes = require('../routes/index')
 const userRouter = require('../controllers/user')
 const loginRouter = require('../controllers/login')
 
+
+
+
 require('../mongo.js')
 
 const server = express()

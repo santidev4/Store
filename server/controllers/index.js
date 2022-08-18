@@ -1,6 +1,12 @@
 const Product = require('../models/Product')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
+// SDK de Mercado Pago
+const mercadopago = require('mercadopago')
+// Agrega credenciales
+mercadopago.configure({
+    access_token: process.env.VENDEDOR_ACCES_TOKEN,
+})
 
 const getDbProducts = (req, res, next) => {
     Product.find()
@@ -67,9 +73,43 @@ const updateProduct = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const generateSell = (req, res) => {
+
+    // Crea un objeto de preferencia
+    let preference = {
+        back_urls:{
+            success: '',
+            failure: '',
+            pending: ''
+        },
+        items: [
+            {
+                title: 'Mi producto',
+                unit_price: 100,
+                quantity: 1,
+                currency_id: 'ARS'
+            },
+        ],
+        notification_url: 'https://www.google.com'   // Tiene que ser una url valida en internet
+    }
+  
+    mercadopago.preferences
+        .create(preference)
+        .then(function (response) {
+            // En esta instancia deberás asignar el valor dentro de response.body.id por el ID de preferencia solicitado en el siguiente paso
+            console.log('response', response)
+            res.send(response.body.init_point)
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+  
+}
+
 module.exports = {
     getDbProducts,
     postProducts,
     deleteProduct,
-    updateProduct
+    updateProduct,
+    generateSell
 }

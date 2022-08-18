@@ -3,7 +3,7 @@ import axios from 'axios'
 export function userLogin(credentials) {
     return async function( dispatch) {
         try {
-            const response = await axios.post('http://localhost:3001/login', credentials)
+            const response = await axios.post('/login', credentials)
             return dispatch({
                 type: 'LOGIN',
                 payload: response.data
@@ -22,7 +22,7 @@ export function userLogin(credentials) {
 export function getProducts() {
     return async function(dispatch) {
         try {
-            const response = await axios.get('http://localhost:3001/products')
+            const response = await axios.get('/products')
             return dispatch({
                 type: 'GET_PRODUCTS',
                 payload: response.data
@@ -36,7 +36,7 @@ export function getProducts() {
 export function postProduct(product, config) {
     return async function(dispatch){
         try {
-            const response = await axios.post('http://localhost:3001/products', product, config)
+            const response = await axios.post('/products', product, config)
             return dispatch({
                 type: 'POST_PRODUCT',
                 payload: response.data
@@ -66,7 +66,7 @@ export function logout() {
 
 export function deleteProduct(id) {
     return async function(dispatch) {
-        await axios.delete('http://localhost:3001/products/' + id)
+        await axios.delete('/products/' + id)
         return dispatch({
             type: 'DELETE',
             payload: id

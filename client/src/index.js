@@ -5,6 +5,11 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/store/index.js';
 import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react'
+import dotenv from 'dotenv'
+import axios from 'axios';
+dotenv.config()
+
+axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

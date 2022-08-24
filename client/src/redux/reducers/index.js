@@ -1,5 +1,6 @@
 const initialState = {
     products: [],
+    categories: [],
     userLoggedIn: false,
     userLoginData: [],
     loginError: ''
@@ -46,6 +47,11 @@ export default function rootReducer (state = initialState, action) {
             return{
                 ...state,
                 products: state.products.filter(product => product.id === action.payload)
+            }
+        case 'GET_CATEGORIES':
+            return{
+                ...state,
+                categories: action.payload
             }
         default:
             return state

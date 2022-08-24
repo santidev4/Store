@@ -73,3 +73,13 @@ export function deleteProduct(id) {
         })
     }
 }
+
+export function getCategories() {
+    return async function(dispatch) {
+        const response = await axios.get('/categories')
+        return dispatch({
+            type: 'GET_CATEGORIES',
+            payload: response.data
+        })
+    }
+}

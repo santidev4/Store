@@ -8,20 +8,17 @@ function Home() {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
 
+  console.log('products', products)
+
   useEffect(() => {
     dispatch(getProducts())
   }, [dispatch])
-
-// title, price, description, image
-
-
-  console.log('products', products)
 
   return (
     <Box>
       {
         products.map(p => (
-          <Card title={p.title} price={p.price} description={p.description} image={p.image} />
+          <Card title={p.title} price={p.price} description={p.description} image={p.image} key={p.id} />
 
         ))
       }

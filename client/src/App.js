@@ -7,7 +7,6 @@ import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 
-  // TODO Aplicar rutas privadas para los usuarios no logueados
   return (
     <BrowserRouter>
       <NavBar />

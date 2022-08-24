@@ -24,7 +24,7 @@ const getDbCategories = (req, res) => {
 }
 
 const getDbProducts = (req, res, next) => {
-    Product.find()
+    Product.find().populate('category')
         .then(result => {
             res.send(result.map(p => {
                 // eslint-disable-next-line no-unused-vars

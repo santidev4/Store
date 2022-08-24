@@ -25,7 +25,8 @@ export default function rootReducer (state = initialState, action) {
         case 'GET_PRODUCTS':
             return{
                 ...state,
-                products: action.payload
+                products: action.payload,
+                allProducts: action.payload
             }
         case 'POST_PRODUCT':
             return{
@@ -46,7 +47,7 @@ export default function rootReducer (state = initialState, action) {
         case 'DELETE':
             return{
                 ...state,
-                products: state.products.filter(product => product.id === action.payload)
+                products: state.allProducts.filter(product => product.id === action.payload)
             }
         case 'GET_CATEGORIES':
             return{

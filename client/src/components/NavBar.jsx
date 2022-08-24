@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Flex, Spacer } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../redux/actions'
@@ -16,24 +16,35 @@ function NavBar() {
   }
 
   return (
-    <Box bg='red.400' p={4}>
-      <Link to='/'>
-        Cuervo Negro
-      </Link>
-      <Link to='/edit'>
-        Editar 
-      </Link>
+    <Flex bg='red.400' p={4}>
+      <Box>
+        <Link to='/'>
+          Cuervo Negro
+        </Link>
+      </Box>
 
-      {
-        userLoggedIn && <Link to='/'>
-          <button onClick={handleLogout}>
+      <Spacer />
 
-            Logout
-          </button>
+      <Flex gap='6'>
+
+        <Box>
+          <Link to='/edit'>
+            Editar 
           </Link>
+        </Box>
+      {
+        userLoggedIn && <Box gap='40px'>
+          <Link to='/'>
+            <button onClick={handleLogout}>
+
+              Logout
+            </button>
+          </Link>
+        </Box> 
       }
+      </Flex>
       
-    </Box>
+    </Flex>
   )
 }
 

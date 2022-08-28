@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react'
 import axios from 'axios';
 
-axios.defaults.baseURL =  'http://localhost:3001'
+axios.defaults.baseURL = process.env.HEROKU_API || 'http://localhost:3001'
   
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
